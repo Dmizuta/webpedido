@@ -1,18 +1,37 @@
+body{
+    text-align: center;
+
+}
 .Cabecalho{
     display: inline-flex;
     flex-direction: column;
     background-color: bisque;
     color: rgb(50, 116, 116);
-   
-   
+    border: 10px;
+    align-content: center;
+    padding: 20px;
+    border-radius: 2%;
+  
+    
 }
 #sellerInput{
     background-color:whitesmoke;
+    padding-bottom: 10px;
 }
    
 #dateInput{
     background-color: whitesmoke;
+    padding-bottom: 10px;
 }
 #buyerInput{
     background-color: whitesmoke;
+    padding-bottom: 10px;
+}
+.Corpo{
+    display: inline-flex;
+    flex-direction: column;
+
+}
+#Lista{
+    background-color: aquamarine;
 }
