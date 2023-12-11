@@ -4,7 +4,7 @@
     background-color: bisque;
     color: rgb(50, 116, 116);
     border: 10px;
-    font-align: center;
+    align-content: center;
 }
 #sellerInput{
     background-color:whitesmoke;
