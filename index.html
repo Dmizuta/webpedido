@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <title>Web Pedido</title>
   <link rel="stylesheet" href="./style.css">
   
@@ -28,7 +28,9 @@
 
   <h2>Produtos:</h2>
 
-  <div id="productsList">
+<div class="Corpo">
+
+  <div id="Lista">
     <!-- Products will be dynamically added here -->
   </div>
   
@@ -42,6 +44,7 @@
   <button onclick="downloadOrderList()">Download</button>
   
   <button onclick="resetOrderList()">Reset</button>
+</div>
 
   <script>
     function addProduct() {
@@ -53,7 +56,7 @@
       productDiv.innerHTML = `Cód: ${barcode} Qte: ${qty}`;
       
       // Append the new product to the productsList
-      document.getElementById('productsList').appendChild(productDiv);
+      document.getElementById('Lista').appendChild(productDiv);
       
       // Clear the input fields after adding the product
       document.getElementById('barcodeInput').value = '';
@@ -64,7 +67,7 @@
       const seller = document.getElementById('sellerInput').value;
       const date = document.getElementById('dateInput').value;
       const buyer = document.getElementById('buyerInput').value;
-      const products = document.getElementById('productsList').innerText;
+      const products = document.getElementById('Lista').innerText;
       
       const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
       
@@ -86,8 +89,9 @@
       document.getElementById('sellerInput').value = '';
       document.getElementById('dateInput').value = '';
       document.getElementById('buyerInput').value = '';
-      document.getElementById('productsList').innerHTML = '';
+      document.getElementById('Lista').innerHTML = '';
     }
   </script>
 </body>
 </html>
+
