@@ -35,3 +35,30 @@ body{
 #Lista{
     background-color: aquamarine;
 }
+#barcodeInput{
+    padding-bottom: 10px;
+
+}
+
+#qtyInput{
+    padding-bottom: 10px;
+}
+
+.botaoaddprod button{
+    margin: 10px;
+    width: 150px;
+    height: 75px;
+
+
+
+}
+.download button{
+    margin: 10px;
+    width: 150px;
+    height: 75px;
+}
+.reset button{
+    margin: 10px;
+    width: 150px;
+    height: 75px;
+}
