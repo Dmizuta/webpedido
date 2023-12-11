@@ -1,0 +1,17 @@
+.Cabecalho{
+    display: inline-flex;
+    flex-direction: column;
+    background-color: bisque;
+    color: rgb(50, 116, 116);
+    border: 10px;
+}
+#sellerInput{
+    background-color:whitesmoke;
+}
+   
+#dateInput{
+    background-color: whitesmoke;
+}
+#buyerInput{
+    background-color: whitesmoke;
+}
