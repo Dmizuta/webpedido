@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   <title>Web Pedido</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
   
 </head>
 <body>
@@ -30,9 +30,7 @@
 
 <div class="Corpo">
 
-  <div id="Lista">
-    <!-- Products will be dynamically added here -->
-  </div>
+  
   
   <h3>Insira o Código</h3>
   <label for="barcodeInput">Código de Barras:</label>
@@ -44,6 +42,10 @@
   <button onclick="downloadOrderList()">Download</button>
   
   <button onclick="resetOrderList()">Reset</button>
+
+  <div id="Lista">
+    <!-- Products will be dynamically added here -->
+  </div>
 </div>
 
   <script>
@@ -94,4 +96,5 @@
   </script>
 </body>
 </html>
+
 
