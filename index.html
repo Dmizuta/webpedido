@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -37,12 +37,16 @@
   <input type="text" id="barcodeInput">
   <label for="qtyInput">Quantidade:</label>
   <input type="text" id="qtyInput">
-  <button onclick="addProduct()">Adicione o Produto</button>
-  
-  <button onclick="downloadOrderList()">Download</button>
-  
-  <button onclick="resetOrderList()">Reset</button>
 
+  <div class="botaoaddprod">
+  <button onclick="addProduct()">Adicione o Produto</button>
+</div>
+  <div class="download">
+  <button onclick="downloadOrderList()">Download</button>
+</div>
+<div class="reset">  
+<button onclick="resetOrderList()">Reset</button>
+</div>
   <div id="Lista">
     <!-- Products will be dynamically added here -->
   </div>
@@ -94,6 +98,9 @@
       document.getElementById('Lista').innerHTML = '';
     }
   </script>
+</body>
+</html>
+
 </body>
 </html>
 
