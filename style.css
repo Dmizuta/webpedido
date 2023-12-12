@@ -1,8 +1,7 @@
 body{
     text-align: center;
-    display: inline-flex;
-
 }
+
 .Cabecalho{
     display: inline-flex;
     flex-direction: column;
