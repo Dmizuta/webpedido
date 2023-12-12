@@ -3,119 +3,125 @@
 body{
   
     
-   text-align: center;
-    display: inline-flex;
-    flex-direction: column;
-    
-    align-items: center;
-    height: 100vh;
-   width: 100%;
-
-
-   
-}
-
-
-
-h1{
-    color: #776B5D;
-    font-size: 5rem;
-  
-    padding-top: 20px;
-  
-}
-
-.tudo{
-    display: inline-flex;
-    flex-direction: column;
-    width: 750px;
-}
-
-.Cabecalho{
-
-    font-size: 3rem;
-    display: inline-flex;
-    flex-direction: column;
-    background-color:#EBE3D5;
-    color: #776B5D;
-   
-    align-content: center;
-    
-    padding: 20px;
+    text-align: center;
+     display: inline-flex;
+     flex-direction: column;
+     
+     align-items: center;
+     height: 100vh;
+    width: 100%;
  
-   
-  }
-
-.Corpo{
-    font-size: 3rem;
-    color: #776B5D;
-    display: inline-flex;
-    flex-direction: column;
-    background-color: #EBE3D5;
-    padding: 20px;
-
-}
-
-
-
-#sellerInput{
-    background-color:whitesmoke;
-    padding-bottom: 10px;
-    border: 0;
-}
-   
-#dateInput{
-    background-color: whitesmoke;
-    padding-bottom: 10px;
-    border: 0
-}
-#buyerInput{
-    background-color: whitesmoke;
-    padding-bottom: 10px;
-    border: 0
-}
-
-#Lista{
-    background-color: #F3EEEA;
-    color: black
-}
-
-#barcodeInput{
-    padding-bottom: 10px;
-    border: 0
  
-}
-
-#qtyInput{
-    padding-bottom: 10px;
-    border: 0
-  
-}
-
-.produtos{
-background-color:#776B5D;
-color: #F3EEEA;
-    }
-
-.addprod button{
-    background-color: #F3EEEA;
-    font-size: 2rem;
-    margin: 20px;
-    width: 300px;
-    height: 150px;
-}
-.download button{
-     background-color: #F3EEEA;
-    font-size: 2rem;
-    margin: 20px;
-    width: 300px;
-    height: 150px;
-}
-.reset button{
-     background-color: #F3EEEA;
-    font-size: 2rem;
-    margin: 20px;
-    width: 300px;
-    height: 150px;
     
-}
+ }
+ 
+ 
+ 
+ h1{
+     color: #776B5D;
+     font-size: 5rem;
+   
+     padding-top: 20px;
+   
+ }
+ 
+ .tudo{
+     display: inline-flex;
+     flex-direction: column;
+     width: 750px;
+ }
+ 
+ .Cabecalho{
+ 
+     font-size: 3rem;
+     display: inline-flex;
+     flex-direction: column;
+     background-color:#EBE3D5;
+     color: #776B5D;
+    
+     align-content: center;
+     
+     padding: 20px;
+  
+    
+   }
+ 
+ .Corpo{
+     font-size: 3rem;
+     color: #776B5D;
+     display: inline-flex;
+     flex-direction: column;
+     background-color: #EBE3D5;
+     padding: 20px;
+ 
+ }
+ 
+ 
+ 
+ #sellerInput{
+     background-color:whitesmoke;
+     padding: 20px;
+     border: 0;
+ }
+    
+ #dateInput{
+     background-color: whitesmoke;
+     
+     padding: 20px;
+     border: 0
+ }
+ #buyerInput{
+     background-color: whitesmoke;
+     
+     padding: 20px;
+     border: 0
+ }
+ 
+ #Lista{
+     background-color: #F3EEEA;
+     
+    
+     color: black
+ }
+ 
+ #barcodeInput{
+     padding: 20px;
+     border: 0
+  
+ }
+ 
+ #qtyInput{
+     padding: 20px;
+     border: 0
+     
+ 
+ }
+ 
+ .produtos{
+ background-color:#776B5D;
+ color: #F3EEEA;
+ font-size: 2.5rem;
+     }
+ 
+ .addprod button{
+     background-color: #F3EEEA;
+     font-size: 2rem;
+     margin: 20px;
+     width: 300px;
+     height: 150px;
+ }
+ .download button{
+      background-color: #F3EEEA;
+      font-size: 2rem;
+     margin: 20px;
+     width: 300px;
+     height: 150px;
+ }
+ .reset button{
+      background-color: #F3EEEA;
+      font-size: 2rem;
+     margin: 20px;
+     width: 300px;
+     height: 150px;
+     
+ }
