@@ -19,7 +19,7 @@ body{
 
 h1{
     color: #776B5D;
-    font-size: 3rem;
+    font-size: 5rem;
   
     padding-top: 20px;
   
@@ -28,12 +28,12 @@ h1{
 .tudo{
     display: inline-flex;
     flex-direction: column;
-    width: 700px;
+    width: 750px;
 }
 
 .Cabecalho{
 
-    font-size: 1.5rem;
+    font-size: 3rem;
     display: inline-flex;
     flex-direction: column;
     background-color:#EBE3D5;
@@ -47,7 +47,7 @@ h1{
   }
 
 .Corpo{
-    font-size: 1.5rem;
+    font-size: 3rem;
     color: #776B5D;
     display: inline-flex;
     flex-direction: column;
