@@ -27,9 +27,7 @@ body{
     background-color: whitesmoke;
     padding-bottom: 10px;
 }
-.Corpo{
-    display: inline-flex;
-    flex-direction: column;
+
 
 }
 #Lista{
