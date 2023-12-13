@@ -32,13 +32,13 @@
     
   <div class="Cabecalho">
   <label for="sellerInput">Vendedor:</label>
-  <input type="text" id="sellerInput">
+  <input type="text" id="sellerInput" class="input-field">
   
   <label for="dateInput">Data:</label>
-  <input type="date" id="dateInput">
+  <input type="date" id="dateInput" class="input-field">
   
   <label for="buyerInput">Cliente:</label>
-  <input type="text" id="buyerInput">
+  <input type="text" id="buyerInput" class="input-field">
   </div>
 
 
@@ -49,9 +49,9 @@
 
   <h3>Insira o Código</h3>
   <label for="barcodeInput">Código de Barras:</label>
-  <input type="text" id="barcodeInput">
+  <input type="text" id="barcodeInput" class="input-field">
   <label for="qtyInput">Quantidade:</label>
-  <input type="text" id="qtyInput">
+  <input type="text" id="qtyInput" class="input-field">
 
   <div class="addprod">
   <button onclick="addProduct()">Adicione o Produto</button>
@@ -76,25 +76,36 @@
 
   <script>
     function addProduct() {
-      const barcode = document.getElementById('barcodeInput').value;
-      const qty = document.getElementById('qtyInput').value;
-      
-      // Create a new product element
-      const productDiv = document.createElement('div');
-      productDiv.innerHTML = `Cod: ${barcode} Qte: ${qty}`;
+  const barcode = document.getElementById('barcodeInput');
+  const qty = document.getElementById('qtyInput');
 
+  // Get the values from the inputs
+  const barcodeValue = barcode.value;
+  const qtyValue = qty.value;
 
-// Set the inner HTML with font-size styles
-productDiv.innerHTML = `<span style="font-size: 2rem;">Cod: ${barcode}</span> <span style="font-size: 2rem;">Qte: ${qty}</span>`;
+  // Create a new product element
+  const productDiv = document.createElement('div');
+  productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
 
-      
-      // Append the new product to the productsList
-      document.getElementById('Lista').appendChild(productDiv);
-      
-      // Clear the input fields after adding the product
-      document.getElementById('barcodeInput').value = '';
-      document.getElementById('qtyInput').value = '';
-    }
+  // Append the new product to the productsList
+  document.getElementById('Lista').appendChild(productDiv);
+
+  // Clear the input fields after adding the product
+  barcode.value = '';
+  qty.value = '';
+
+  // Focus on the quantity input field
+  qty.focus();
+}
+
+// Listen for Enter key press in the barcode input field
+document.getElementById('barcodeInput').addEventListener('keyup', function(event) {
+  if (event.key === 'Enter') {
+    // Focus on the quantity input field
+    document.getElementById('qtyInput').focus();
+  }
+});
+
     
     function downloadOrderList() {
       const seller = document.getElementById('sellerInput').value;
@@ -127,6 +138,5 @@ productDiv.innerHTML = `<span style="font-size: 2rem;">Cod: ${barcode}</span> <s
   </script>
 </body>
 </html>
-
 
 
