@@ -4,137 +4,143 @@
   <meta charset="UTF-8">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
-
-
-
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
 
   <title>Web Pedido</title>
-
   <link rel="stylesheet" href="./style.css">
   
 </head>
 <body>
-
-    <html style="font-family: 'Kanit', sans-serif;">
-
   <h1>PEDIDO</h1>
-
-
   <div class="tudo">
+    <div class="Cabecalho">
+      <label for="sellerInput">Vendedor:</label>
+      <input type="text" id="sellerInput" class="input-field">
+      
+      <label for="dateInput">Data:</label>
+      <input type="date" id="dateInput" class="input-field">
+      
+      <label for="buyerInput">Cliente:</label>
+      <input type="text" id="buyerInput" class="input-field">
+    </div>
 
-    
-  <div class="Cabecalho">
-  <label for="sellerInput">Vendedor:</label>
-  <input type="text" id="sellerInput" class="input-field">
-  
-  <label for="dateInput">Data:</label>
-  <input type="date" id="dateInput" class="input-field">
-  
-  <label for="buyerInput">Cliente:</label>
-  <input type="text" id="buyerInput" class="input-field">
+    <div class="Corpo">
+      <h3>Insira o Código</h3>
+      <label for="barcodeInput">Código de Barras:</label>
+      <input type="text" id="barcodeInput" class="input-field">
+      <label for="qtyInput">Quantidade:</label>
+      <input type="text" id="qtyInput" class="input-field">
+
+      <div class="addprod">
+        <button onclick="addProduct()">Adicione o Produto</button>
+      </div>
+      <div class="download">
+        <button onclick="downloadOrderList()">Download</button>
+      </div>
+      <div class="reset">  
+        <button onclick="resetOrderList()">Reset</button>
+      </div>
+      <div class="produtos">
+        <h2>Produtos:</h2>
+        <div id="productsList">
+          <script>
+            function addProduct() {
+              const barcode = document.getElementById('barcodeInput');
+              const qty = document.getElementById('qtyInput');
+          
+              // Get the values from the inputs
+              const barcodeValue = barcode.value;
+              const qtyValue = qty.value;
+          
+              // Create a new product element
+              const productDiv = document.createElement('div');
+              productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
+          
+              // Append the new product to the productsList
+              document.getElementById('productsList').appendChild(productDiv);
+          
+              // Clear the input fields after adding the product
+              barcode.value = '';
+              qty.value = '';
+          
+              // Focus on the quantity input field
+              qty.focus();
+            }
+          
+            // Listen for Enter key press in the barcode input field
+            document.getElementById('barcodeInput').addEventListener('keyup', function(event) {
+              if (event.key === 'Enter') {
+                // Focus on the quantity input field
+                document.getElementById('qtyInput').focus();
+              }
+            });
+          
+            function downloadOrderList() {
+              const seller = document.getElementById('sellerInput').value;
+              const date = document.getElementById('dateInput').value;
+              const buyer = document.getElementById('buyerInput').value;
+              const products = document.getElementById('productsList').innerHTML;
+              
+              const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
+              
+              const fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n${products}`;
+              
+              const blob = new Blob([fileContent], { type: 'text/plain' });
+              
+              const a = document.createElement('a');
+              const url = window.URL.createObjectURL(blob);
+              a.href = url;
+              a.download = `${fileName}.txt`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              window.URL.revokeObjectURL(url);
+            }
+          
+            function resetOrderList() {
+              document.getElementById('sellerInput').value = '';
+              document.getElementById('dateInput').value = '';
+              document.getElementById('buyerInput').value = '';
+              document.getElementById('productsList').innerHTML = '';
+            }
+          
+            fetch('https://script.google.com/macros/s/AKfycbx43G9GTbg_1SLMC-4g8AyNXFc7wUaFQdhNBHu1reVcmNCCeFwT1bZmdile9V7LVoKk/exec')
+              .then(response => response.json())
+              .then(data => {
+                // Handle the received data here
+                displayProducts(data);
+              })
+              .catch(error => {
+                console.error('Error fetching data:', error);
+              });
+          
+            function displayProducts(products) {
+              const productsListDiv = document.getElementById('productsList');
+          
+              products.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.innerHTML = `
+                  <h2>${product.name}</h2>
+                  <p>Description: ${product.description}</p>
+                  <p>Price: ${product.price}</p>
+                  <hr>
+                `;
+                productsListDiv.appendChild(productDiv);
+              });
+            }
+          </script>
+          
+        </div>
+      </div>
+    </div>
   </div>
-
-
-
-<div class="Corpo">
-
-  
-
-  <h3>Insira o Código</h3>
-  <label for="barcodeInput">Código de Barras:</label>
-  <input type="text" id="barcodeInput" class="input-field">
-  <label for="qtyInput">Quantidade:</label>
-  <input type="text" id="qtyInput" class="input-field">
-
-  <div class="addprod">
-  <button onclick="addProduct()">Adicione o Produto</button>
-</div>
-  <div class="download">
-  <button onclick="downloadOrderList()">Download</button>
-</div>
-<div class="reset">  
-<button onclick="resetOrderList()">Reset</button>
-</div>
-<div class="produtos">
-<h2>Produtos:</h2>
-
-  
-  <div id="Lista">
-     
-    <!-- Products will be dynamically added here -->
-  </div>
-</div>
-</div>
-</div>
-
   <script>
-    function addProduct() {
-  const barcode = document.getElementById('barcodeInput');
-  const qty = document.getElementById('qtyInput');
-
-  // Get the values from the inputs
-  const barcodeValue = barcode.value;
-  const qtyValue = qty.value;
-
-  // Create a new product element
-  const productDiv = document.createElement('div');
-  productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
-
-  // Append the new product to the productsList
-  document.getElementById('Lista').appendChild(productDiv);
-
-  // Clear the input fields after adding the product
-  barcode.value = '';
-  qty.value = '';
-
-  // Focus on the quantity input field
-  qty.focus();
-}
-
-// Listen for Enter key press in the barcode input field
-document.getElementById('barcodeInput').addEventListener('keyup', function(event) {
-  if (event.key === 'Enter') {
-    // Focus on the quantity input field
-    document.getElementById('qtyInput').focus();
-  }
-});
-
-    
-    function downloadOrderList() {
-      const seller = document.getElementById('sellerInput').value;
-      const date = document.getElementById('dateInput').value;
-      const buyer = document.getElementById('buyerInput').value;
-      const products = document.getElementById('Lista').innerText;
-      
-      const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
-      
-      const fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n${products}`;
-      
-      const blob = new Blob([fileContent], { type: 'text/plain' });
-      
-      const a = document.createElement('a');
-      const url = window.URL.createObjectURL(blob);
-      a.href = url;
-      a.download = `${fileName}.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }
-    
-    function resetOrderList() {
-      document.getElementById('sellerInput').value = '';
-      document.getElementById('dateInput').value = '';
-      document.getElementById('buyerInput').value = '';
-      document.getElementById('Lista').innerHTML = '';
-    }
+    // ... Your JavaScript code ...
   </script>
 </body>
 </html>
