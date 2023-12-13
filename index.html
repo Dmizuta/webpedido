@@ -82,6 +82,11 @@
       // Create a new product element
       const productDiv = document.createElement('div');
       productDiv.innerHTML = `Cod: ${barcode} Qte: ${qty}`;
+
+
+// Set the inner HTML with font-size styles
+productDiv.innerHTML = `<span style="font-size: 2rem;">Cod: ${barcode}</span> <span style="font-size: 2rem;">Qte: ${qty}</span>`;
+
       
       // Append the new product to the productsList
       document.getElementById('Lista').appendChild(productDiv);
