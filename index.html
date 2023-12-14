@@ -16,9 +16,13 @@
   
 </head>
 <body>
+  
   <h1>PEDIDO</h1>
+  
   <div class="tudo">
+    
     <div class="Cabecalho">
+      
       <label for="sellerInput">Vendedor:</label>
       <input type="text" id="sellerInput" class="input-field">
       
@@ -27,27 +31,41 @@
       
       <label for="buyerInput">Cliente:</label>
       <input type="text" id="buyerInput" class="input-field">
+      
     </div>
 
     <div class="Corpo">
+      
       <h3>Insira o Código</h3>
+      
       <label for="barcodeInput">Código de Barras:</label>
       <input type="text" id="barcodeInput" class="input-field">
       <label for="qtyInput">Quantidade:</label>
       <input type="text" id="qtyInput" class="input-field">
 
       <div class="addprod">
+        
         <button onclick="addProduct()">Adicione o Produto</button>
+        
       </div>
       <div class="download">
+        
         <button onclick="downloadOrderList()">Download</button>
+        
       </div>
+      
       <div class="reset">  
+        
         <button onclick="resetOrderList()">Reset</button>
+        
       </div>
+      
       <div class="produtos">
+        
         <h2>Produtos:</h2>
+        
         <div id="productsList">
+          
           <script>
             function addProduct() {
               const barcode = document.getElementById('barcodeInput');
