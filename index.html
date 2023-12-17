@@ -3,9 +3,15 @@
 <head>
   <meta charset="UTF-8">
 
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.13/xlsx.full.min.js"></script>
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,10 +56,17 @@
       </div>
       <div class="download">
         
-        <button onclick="downloadOrderList()">Download</button>
+        <button onclick="downloadOrderList()">Download1</button>
         
       </div>
       
+      <div class="download">
+        
+        <button onclick="excel()">Download2</button>
+        
+      </div>
+
+
       <div class="reset">  
         
         <button onclick="resetOrderList()">Reset</button>
@@ -97,28 +110,92 @@
                 document.getElementById('qtyInput').focus();
               }
             });
+
+
+
+
+            
           
             function downloadOrderList() {
-              const seller = document.getElementById('sellerInput').value;
-              const date = document.getElementById('dateInput').value;
-              const buyer = document.getElementById('buyerInput').value;
-              const products = document.getElementById('productsList').innerHTML;
-              
-              const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
-              
-              const fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n${products}`;
-              
-              const blob = new Blob([fileContent], { type: 'text/plain' });
-              
-              const a = document.createElement('a');
-              const url = window.URL.createObjectURL(blob);
-              a.href = url;
-              a.download = `${fileName}.txt`;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              window.URL.revokeObjectURL(url);
-            }
+  const seller = document.getElementById('sellerInput').value;
+  const date = document.getElementById('dateInput').value;
+  const buyer = document.getElementById('buyerInput').value;
+
+  // Fetch all product elements and extract barcode and quantity
+  const productsDivs = document.querySelectorAll('#productsList div');
+  const products = Array.from(productsDivs).map(productDiv => {
+    const text = productDiv.textContent;
+    const [, barcode, qty] = text.match(/Cod: (\S+) Qte: (\S+)/) || [];
+    return { barcode, qty };
+  });
+
+  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
+
+  // Create formatted content including seller, date, buyer, barcode, and quantity
+  let fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n`;
+  products.forEach(product => {
+    fileContent += `Cod: ${product.barcode} Qte: ${product.qty}\n`;
+  });
+
+  // Create and download the text file
+  const blob = new Blob([fileContent], { type: 'text/plain' });
+  const a = document.createElement('a');
+  const url = window.URL.createObjectURL(blob);
+  a.href = url;
+  a.download = `${fileName}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+  
+}
+
+
+
+
+
+
+
+
+function excel() {
+  const seller = document.getElementById('sellerInput').value;
+  const date = document.getElementById('dateInput').value;
+  const buyer = document.getElementById('buyerInput').value;
+
+  // Fetch all product elements and extract barcode and quantity
+  const productsDivs = document.querySelectorAll('#productsList div');
+  const products = Array.from(productsDivs).map(productDiv => {
+    const text = productDiv.textContent;
+    const [, barcode, qty] = text.match(/Cod: (\S+) Qte: (\S+)/) || [];
+    return { barcode, qty };
+  });
+
+  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
+
+  // Create Excel file
+  const worksheet = XLSX.utils.json_to_sheet(products);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+  const excelBlob = new Blob([XLSX.write(workbook, { type: 'array', bookType: 'xlsx' })], { type: 'application/octet-stream' });
+  const excelAnchor = document.createElement('a');
+  const excelUrl = window.URL.createObjectURL(excelBlob);
+  excelAnchor.href = excelUrl;
+  excelAnchor.download = `${fileName}.xlsx`;
+
+  // Trigger Excel file download
+  document.body.appendChild(excelAnchor);
+  excelAnchor.click();
+  document.body.removeChild(excelAnchor);
+  window.URL.revokeObjectURL(excelUrl);
+}
+
+
+
+
+
+
+
+
           
             function resetOrderList() {
               document.getElementById('sellerInput').value = '';
@@ -127,30 +204,8 @@
               document.getElementById('productsList').innerHTML = '';
             }
           
-            fetch('https://script.google.com/macros/s/AKfycbx43G9GTbg_1SLMC-4g8AyNXFc7wUaFQdhNBHu1reVcmNCCeFwT1bZmdile9V7LVoKk/exec')
-              .then(response => response.json())
-              .then(data => {
-                // Handle the received data here
-                displayProducts(data);
-              })
-              .catch(error => {
-                console.error('Error fetching data:', error);
-              });
+            
           
-            function displayProducts(products) {
-              const productsListDiv = document.getElementById('productsList');
-          
-              products.forEach(product => {
-                const productDiv = document.createElement('div');
-                productDiv.innerHTML = `
-                  <h2>${product.name}</h2>
-                  <p>Description: ${product.description}</p>
-                  <p>Price: ${product.price}</p>
-                  <hr>
-                `;
-                productsListDiv.appendChild(productDiv);
-              });
-            }
           </script>
           
         </div>
@@ -162,5 +217,4 @@
   </script>
 </body>
 </html>
-
 
