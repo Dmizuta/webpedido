@@ -109,16 +109,44 @@
     });
 
     function downloadOrderList() {
-      // Your downloadOrderList function code remains the same...
+      const seller = document.getElementById('sellerInput').value;
+  const date = document.getElementById('dateInput').value;
+  const buyer = document.getElementById('buyerInput').value;
+
+  // Fetch all product elements and extract barcode and quantity
+  const productsDivs = document.querySelectorAll('#productsList div');
+  const products = Array.from(productsDivs).map(productDiv => {
+    const text = productDiv.textContent;
+    const [, barcode, qty] = text.match(/Cod: (\S+) Qte: (\S+)/) || [];
+    return { barcode, qty };
+  });
+
+  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
+
+  // Create formatted content including seller, date, buyer, barcode, and quantity
+  let fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n`;
+  products.forEach(product => {
+    fileContent += `Cod: ${product.barcode} Qte: ${product.qty}\n`;
+  });
+
+  // Create and download the text file
+  const blob = new Blob([fileContent], { type: 'text/plain' });
+  const a = document.createElement('a');
+  const url = window.URL.createObjectURL(blob);
+  a.href = url;
+  a.download = `${fileName}.txt`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
     }
 
-    function excel() {
-      // Your excel function code remains the same...
-    }
-
-    function resetOrderList() {
-      // Your resetOrderList function code remains the same...
-    }
+    function resetOrderList()  {
+              document.getElementById('sellerInput').value = '';
+              document.getElementById('dateInput').value = '';
+              document.getElementById('buyerInput').value = '';
+              document.getElementById('productsList').innerHTML = '';
+            }
   </script>
 </body>
 </html>
