@@ -88,8 +88,8 @@
       barcode.value = '';
       qty.value = '';
 
-      // Focus on the barcode input field after adding the product
-      barcode.focus();
+      // Focus on the quantity input field after adding the product
+      qty.focus();
     }
 
     // Listen for Enter key press in the quantity input field
@@ -98,6 +98,13 @@
         // Trigger addProduct function
         addProduct();
         event.preventDefault();
+      }
+    });
+
+    document.getElementById('barcodeInput').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        // Focus on the quantity input field after entering the barcode
+        document.getElementById('qtyInput').focus();
       }
     });
 
