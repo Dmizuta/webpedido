@@ -80,36 +80,43 @@
         <div id="productsList">
           
           <script>
-            function addProduct() {
-              const barcode = document.getElementById('barcodeInput');
-              const qty = document.getElementById('qtyInput');
-          
-              // Get the values from the inputs
-              const barcodeValue = barcode.value;
-              const qtyValue = qty.value;
-          
-              // Create a new product element
-              const productDiv = document.createElement('div');
-              productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
-          
-              // Append the new product to the productsList
-              document.getElementById('productsList').appendChild(productDiv);
-          
-              // Clear the input fields after adding the product
-              barcode.value = '';
-              qty.value = '';
-          
-              // Focus on the quantity input field
-              barcode.focus();
-            }
-          
-            // Listen for Enter key press in the barcode input field
-            document.getElementById('barcodeInput').addEventListener('keyup', function(event) {
-              if (event.key === 'Enter') {
-                // Focus on the quantity input field
-                document.getElementById('qtyInput').focus();
-              }
-            });
+            <!-- ... (your existing HTML code) ... -->
+
+<script>
+  function addProduct() {
+    const barcode = document.getElementById('barcodeInput');
+    const qty = document.getElementById('qtyInput');
+
+    // Get the values from the inputs
+    const barcodeValue = barcode.value;
+    const qtyValue = qty.value;
+
+    // Create a new product element
+    const productDiv = document.createElement('div');
+    productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
+
+    // Append the new product to the productsList
+    document.getElementById('productsList').appendChild(productDiv);
+
+    // Clear the input fields after adding the product
+    barcode.value = '';
+    qty.value = '';
+
+    // Focus on the barcode input field after adding the product
+    barcode.focus();
+  }
+
+  // Listen for Enter key press in the quantity input field
+  document.getElementById('qtyInput').addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      // Trigger addProduct function
+      addProduct();
+    }
+  });
+</script>
+
+<!-- ... (rest of your HTML code) ... -->
+
 
 
 
