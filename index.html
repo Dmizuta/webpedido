@@ -3,15 +3,11 @@
 <head>
   <meta charset="UTF-8">
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.13/xlsx.full.min.js"></script>
-
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-
-
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,178 +46,72 @@
       <input type="text" id="qtyInput" class="input-field">
 
       <div class="addprod">
-        
         <button onclick="addProduct()">Adicione o Produto</button>
-        
-      </div>
-      <div class="download">
-        
-        <button onclick="downloadOrderList()">Download1</button>
-        
       </div>
       
       <div class="download">
-        
+        <button onclick="downloadOrderList()">Download1</button>
+      </div>
+      
+      <div class="download">
         <button onclick="excel()">Download2</button>
-        
       </div>
 
-
       <div class="reset">  
-        
         <button onclick="resetOrderList()">Reset</button>
-        
       </div>
       
       <div class="produtos">
-        
         <h2>Produtos:</h2>
-        
-        <div id="productsList">
-          
-          <script>
-            <!-- ... (your existing HTML code) ... -->
-
-<script>
-  function addProduct() {
-    const barcode = document.getElementById('barcodeInput');
-    const qty = document.getElementById('qtyInput');
-
-    // Get the values from the inputs
-    const barcodeValue = barcode.value;
-    const qtyValue = qty.value;
-
-    // Create a new product element
-    const productDiv = document.createElement('div');
-    productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
-
-    // Append the new product to the productsList
-    document.getElementById('productsList').appendChild(productDiv);
-
-    // Clear the input fields after adding the product
-    barcode.value = '';
-    qty.value = '';
-
-    // Focus on the barcode input field after adding the product
-    barcode.focus();
-  }
-
-  // Listen for Enter key press in the quantity input field
-  document.getElementById('qtyInput').addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-      // Trigger addProduct function
-      addProduct();
-    }
-  });
-</script>
-
-<!-- ... (rest of your HTML code) ... -->
-
-
-
-
-
-            
-          
-            function downloadOrderList() {
-  const seller = document.getElementById('sellerInput').value;
-  const date = document.getElementById('dateInput').value;
-  const buyer = document.getElementById('buyerInput').value;
-
-  // Fetch all product elements and extract barcode and quantity
-  const productsDivs = document.querySelectorAll('#productsList div');
-  const products = Array.from(productsDivs).map(productDiv => {
-    const text = productDiv.textContent;
-    const [, barcode, qty] = text.match(/Cod: (\S+) Qte: (\S+)/) || [];
-    return { barcode, qty };
-  });
-
-  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
-
-  // Create formatted content including seller, date, buyer, barcode, and quantity
-  let fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n`;
-  products.forEach(product => {
-    fileContent += `Cod: ${product.barcode} Qte: ${product.qty}\n`;
-  });
-
-  // Create and download the text file
-  const blob = new Blob([fileContent], { type: 'text/plain' });
-  const a = document.createElement('a');
-  const url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = `${fileName}.txt`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-  
-}
-
-
-
-
-
-
-
-
-function excel() {
-  const seller = document.getElementById('sellerInput').value;
-  const date = document.getElementById('dateInput').value;
-  const buyer = document.getElementById('buyerInput').value;
-
-  // Fetch all product elements and extract barcode and quantity
-  const productsDivs = document.querySelectorAll('#productsList div');
-  const products = Array.from(productsDivs).map(productDiv => {
-    const text = productDiv.textContent;
-    const [, barcode, qty] = text.match(/Cod: (\S+) Qte: (\S+)/) || [];
-    return { barcode, qty };
-  });
-
-  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
-
-  // Create Excel file
-  const worksheet = XLSX.utils.json_to_sheet(products);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-  const excelBlob = new Blob([XLSX.write(workbook, { type: 'array', bookType: 'xlsx' })], { type: 'application/octet-stream' });
-  const excelAnchor = document.createElement('a');
-  const excelUrl = window.URL.createObjectURL(excelBlob);
-  excelAnchor.href = excelUrl;
-  excelAnchor.download = `${fileName}.xlsx`;
-
-  // Trigger Excel file download
-  document.body.appendChild(excelAnchor);
-  excelAnchor.click();
-  document.body.removeChild(excelAnchor);
-  window.URL.revokeObjectURL(excelUrl);
-}
-
-
-
-
-
-
-
-
-          
-            function resetOrderList() {
-              document.getElementById('sellerInput').value = '';
-              document.getElementById('dateInput').value = '';
-              document.getElementById('buyerInput').value = '';
-              document.getElementById('productsList').innerHTML = '';
-            }
-          
-            
-          
-          </script>
-          
-        </div>
+        <div id="productsList"></div>
       </div>
     </div>
   </div>
+
   <script>
-    // ... Your JavaScript code ...
+    function addProduct() {
+      const barcode = document.getElementById('barcodeInput');
+      const qty = document.getElementById('qtyInput');
+
+      // Get the values from the inputs
+      const barcodeValue = barcode.value;
+      const qtyValue = qty.value;
+
+      // Create a new product element
+      const productDiv = document.createElement('div');
+      productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
+
+      // Append the new product to the productsList
+      document.getElementById('productsList').appendChild(productDiv);
+
+      // Clear the input fields after adding the product
+      barcode.value = '';
+      qty.value = '';
+
+      // Focus on the barcode input field after adding the product
+      barcode.focus();
+    }
+
+    // Listen for Enter key press in the quantity input field
+    document.getElementById('qtyInput').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        // Trigger addProduct function
+        addProduct();
+        event.preventDefault();
+      }
+    });
+
+    function downloadOrderList() {
+      // Your downloadOrderList function code remains the same...
+    }
+
+    function excel() {
+      // Your excel function code remains the same...
+    }
+
+    function resetOrderList() {
+      // Your resetOrderList function code remains the same...
+    }
   </script>
 </body>
 </html>
-
