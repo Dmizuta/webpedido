@@ -6,9 +6,16 @@ function addProduct() {
   const barcodeValue = barcode.value;
   const qtyValue = qty.value;
 
+  // Retrieve the foundItem from local storage
+  const foundItem = retrieveData().find(item => item.Barcode === parseInt(barcodeValue));
+
   // Create a new product element
   const productDiv = document.createElement('div');
-  productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
+  if (foundItem && foundItem['Codigo'] && foundItem['Descricao']) {
+    productDiv.innerHTML = `Cód: ${barcodeValue}, Qte: ${qtyValue}, Item: ${foundItem['Codigo']}, Descrição: ${foundItem['Descricao']}`;
+  } else {
+    productDiv.innerHTML = `Cód: ${barcodeValue}, Qte: ${qtyValue}, Not found`;
+  }
 
   // Append the new product to the productsList
   document.getElementById('productsList').appendChild(productDiv);
@@ -20,6 +27,9 @@ function addProduct() {
   // Focus on the barcode input field after adding the product
   barcode.focus();
 }
+
+
+
 
 // Listen for Enter key press in the quantity input field
 document.getElementById('qtyInput').addEventListener('keyup', function(event) {
@@ -36,6 +46,27 @@ document.getElementById('barcodeInput').addEventListener('keyup', function(event
     document.getElementById('qtyInput').focus();
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function downloadOrderList() {
   const seller = document.getElementById('sellerInput').value;
@@ -188,4 +219,3 @@ document.getElementById('barcodeInput').addEventListener('keydown', function (e)
     searchForBarcode(barcode);
   }
 });
-
