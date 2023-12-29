@@ -184,7 +184,7 @@ function retrieveData() {
 function displayData(foundItem) {
   const displayDiv = document.getElementById('displayData');
   if (foundItem) {
-    let displayContent = '<h2>Found Data:</h2>';
+    let displayContent = '<h2>Detalhamento dos Produtos:</h2>';
     for (let key in foundItem) {
       displayContent += `<p>${key}: ${foundItem[key]}</p>`;
     }
