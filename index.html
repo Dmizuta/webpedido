@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   
+ 
+ <!-- <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.13/dist/xlsx.full.min.js"></script>-->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
@@ -36,8 +34,57 @@
       
     </div>
 
+
+
+
+
+<!-- Your existing HTML code -->
+<!-- ... -->
+<div id="displayData"></div>
+
+
+
+<div id="productDetails">
+  <h2>Product Details</h2>
+  <div id="columnA"></div>
+  <div id="columnF"></div>
+</div>
+
+<!-- Add a button -->
+
+
+<!-- ... -->
+
+
+<!-- Add a container where the JSON data will be displayed -->
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="Corpo">
       
+<!-- Elemento de upload de arquivo -->
+
+
+ <input type="file" id="excelFileInput" />
+
+
+
+
+
+
+
+
+
       <h3>Insira o Código</h3>
       
       <label for="barcodeInput">Código de Barras:</label>
@@ -68,85 +115,9 @@
     </div>
   </div>
 
-  <script>
-    function addProduct() {
-      const barcode = document.getElementById('barcodeInput');
-      const qty = document.getElementById('qtyInput');
+  <script src="script.js"></script>
 
-      // Get the values from the inputs
-      const barcodeValue = barcode.value;
-      const qtyValue = qty.value;
 
-      // Create a new product element
-      const productDiv = document.createElement('div');
-      productDiv.innerHTML = `Cod: ${barcodeValue} Qte: ${qtyValue}`;
-
-      // Append the new product to the productsList
-      document.getElementById('productsList').appendChild(productDiv);
-
-      // Clear the input fields after adding the product
-      barcode.value = '';
-      qty.value = '';
-
-      // Focus on the barcode input field after adding the product
-      barcode.focus();
-    }
-
-    // Listen for Enter key press in the quantity input field
-    document.getElementById('qtyInput').addEventListener('keyup', function(event) {
-      if (event.key === 'Enter') {
-        // Trigger addProduct function
-        addProduct();
-        event.preventDefault();
-      }
-    });
-
-    document.getElementById('barcodeInput').addEventListener('keyup', function(event) {
-      if (event.key === 'Enter') {
-        // Focus on the quantity input field after entering the barcode
-        document.getElementById('qtyInput').focus();
-      }
-    });
-
-    function downloadOrderList() {
-      const seller = document.getElementById('sellerInput').value;
-  const date = document.getElementById('dateInput').value;
-  const buyer = document.getElementById('buyerInput').value;
-
-  // Fetch all product elements and extract barcode and quantity
-  const productsDivs = document.querySelectorAll('#productsList div');
-  const products = Array.from(productsDivs).map(productDiv => {
-    const text = productDiv.textContent;
-    const [, barcode, qty] = text.match(/Cod: (\S+) Qte: (\S+)/) || [];
-    return { barcode, qty };
-  });
-
-  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
-
-  // Create formatted content including seller, date, buyer, barcode, and quantity
-  let fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n`;
-  products.forEach(product => {
-    fileContent += `Cod: ${product.barcode} Qte: ${product.qty}\n`;
-  });
-
-  // Create and download the text file
-  const blob = new Blob([fileContent], { type: 'text/plain' });
-  const a = document.createElement('a');
-  const url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = `${fileName}.txt`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-    }
-
-    function resetOrderList()  {
-              document.getElementById('sellerInput').value = '';
-              document.getElementById('dateInput').value = '';
-              document.getElementById('buyerInput').value = '';
-              document.getElementById('productsList').innerHTML = '';
-            }
-  </script>
+ 
 </body>
 </html>
