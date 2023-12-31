@@ -1,23 +1,46 @@
+
+
+
 function addProduct() {
   const barcode = document.getElementById('barcodeInput');
   const qty = document.getElementById('qtyInput');
 
   // Get the values from the inputs
   const barcodeValue = barcode.value;
-  const qtyValue = qty.value;
+  const qtyValue = parseInt(qty.value); // Parse quantity as an integer
 
   // Retrieve the foundItem from local storage
-  const foundItem = retrieveData().find(item => item.Barcode === parseInt(barcodeValue));
+  const foundItem = retrieveData().find(item => item['Barcode'] === parseInt(barcodeValue));
+
+  // Get the specific fields from the foundItem
+  const threshold = foundItem && foundItem['Caixa Fechada'] ? foundItem['Caixa Fechada'] : 0;
+  const priceA = foundItem && foundItem['Valor Fechada'] ? foundItem['Valor Fechada'] : 0;
+  const priceB = foundItem && foundItem['Valor Fracionada'] ? foundItem['Valor Fracionada'] : 0;
+
+  let finalPrice;
+
+  // Compare entered quantity with threshold and set price accordingly
+  if (qtyValue >= threshold) {
+    finalPrice = priceA;
+  } else {
+    finalPrice = priceB;
+  }
 
   // Create a new product element
   const productDiv = document.createElement('div');
+  productDiv.classList.add('product'); // Optional: Add a class for styling purposes
+
   if (foundItem && foundItem['Codigo'] && foundItem['Descricao']) {
-    productDiv.innerHTML = `Cód: ${barcodeValue}, Qte: ${qtyValue}, Item: ${foundItem['Codigo']}, Descrição: ${foundItem['Descricao']}`;
+    const productInfo = document.createElement('p');
+    productInfo.textContent = `Cód: ${barcodeValue}, Qte: ${qtyValue}, Item: ${foundItem['Codigo']}, Descrição: ${foundItem['Descricao']}\n, Preço: R$ ${finalPrice}`; // Display the calculated price
+    productDiv.appendChild(productInfo);
   } else {
-    productDiv.innerHTML = `Cód: ${barcodeValue}, Qte: ${qtyValue}, Not found`;
+    const notFoundInfo = document.createElement('p');
+    notFoundInfo.textContent = `Cód: ${barcodeValue}\nQte: ${qtyValue}\nNot found\nPrice: ${finalPrice}`; // Display the calculated price
+    productDiv.appendChild(notFoundInfo);
   }
 
-  // Append the new product to the productsList
+  // Append the new product structure to the productsList
   document.getElementById('productsList').appendChild(productDiv);
 
   // Clear the input fields after adding the product
@@ -27,9 +50,6 @@ function addProduct() {
   // Focus on the barcode input field after adding the product
   barcode.focus();
 }
-
-
-
 
 // Listen for Enter key press in the quantity input field
 document.getElementById('qtyInput').addEventListener('keyup', function(event) {
@@ -48,15 +68,44 @@ document.getElementById('barcodeInput').addEventListener('keyup', function(event
 });
 
 
+function exportToExcel() {
+  const seller = document.getElementById('sellerInput').value;
+  const date = document.getElementById('dateInput').value;
+  const buyer = document.getElementById('buyerInput').value;
 
+  // Fetch all product elements and extract barcode, quantity, code, description, and price
+  const productsDivs = document.querySelectorAll('#productsList div');
+  const products = Array.from(productsDivs).map(productDiv => {
+    const text = productDiv.textContent;
+    const [, barcode, qty, code, description] = text.match(/Cód: (\S+), Qte: (\S+), Item: (\S+), Descrição: (.+)/) || [];
 
+    // Modify this line to extract the price property from the text content
+    const price = text.includes('Preço') ? text.split('Preço: ')[1].trim() : 'N/A';
 
+    return { barcode, qty, code, description, price };
+  });
 
+  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
 
+  let dataArray = [
+    ["Vendedor", seller],
+    ["Data", date],
+    ["Comprador", buyer],
+    [], // Empty row for spacing
+    ["Barcode", "Código", "Quantidade", "Descrição", "Preço"] // Include "Preço" as the header
+  ];
+  
+  products.forEach(product => {
+    dataArray.push([product.barcode, product.code, product.qty, product.description, product.price]);
+  });
 
-
-
-
+  const worksheet = XLSX.utils.aoa_to_sheet(dataArray);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'OrderList');
+  
+  // Save the workbook
+  XLSX.writeFile(workbook, `${fileName}.xlsx`);
+}
 
 
 
@@ -73,23 +122,12 @@ function downloadOrderList() {
   const date = document.getElementById('dateInput').value;
   const buyer = document.getElementById('buyerInput').value;
 
-  // Fetch all product elements and extract barcode and quantity
-  const productsDivs = document.querySelectorAll('#productsList div');
-  const products = Array.from(productsDivs).map(productDiv => {
-    const text = productDiv.textContent;
-    const [, barcode, qty] = text.match(/Cod: (\S+) Qte: (\S+)/) || [];
-    return { barcode, qty };
-  });
+  const productsListContent = document.getElementById('productsList').textContent;
 
   const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
 
-  // Create formatted content including seller, date, buyer, barcode, and quantity
-  let fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n`;
-  products.forEach(product => {
-    fileContent += `Cod: ${product.barcode} Qte: ${product.qty}\n`;
-  });
+  let fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n${productsListContent}`;
 
-  // Create and download the text file
   const blob = new Blob([fileContent], { type: 'text/plain' });
   const a = document.createElement('a');
   const url = window.URL.createObjectURL(blob);
@@ -100,6 +138,29 @@ function downloadOrderList() {
   document.body.removeChild(a);
   window.URL.revokeObjectURL(url);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function uploadExcelFile() {
   const input = document.getElementById('excelFileInput');
@@ -184,7 +245,7 @@ function retrieveData() {
 function displayData(foundItem) {
   const displayDiv = document.getElementById('displayData');
   if (foundItem) {
-    let displayContent = '<h2>Detalhamento:</h2>';
+    let displayContent = '<h2>Found Data:</h2>';
     for (let key in foundItem) {
       displayContent += `<p>${key}: ${foundItem[key]}</p>`;
     }
