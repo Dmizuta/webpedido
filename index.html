@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   
  
- <!-- <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.13/dist/xlsx.full.min.js"></script>-->
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,20 +38,6 @@
 
 
 
-<!-- Your existing HTML code -->
-<!-- ... -->
-<div id="displayData"></div>
-
-
-
-
-<!-- Add a button -->
-
-
-<!-- ... -->
-
-
-<!-- Add a container where the JSON data will be displayed -->
 
 
 
@@ -64,6 +50,13 @@
 
 
 
+
+
+
+
+
+
+    <div id="displayData"></div>
 
     <div class="Corpo">
       
@@ -92,12 +85,13 @@
       </div>
       
       <div class="download">
-        <button onclick="downloadOrderList()">Download1</button>
+        <button onclick="downloadOrderList()">Download Texto</button>
       </div>
       
       <div class="download">
-        <button onclick="excel()">Download2</button>
+        <button onclick="exportToExcel()">Download Excel</button>
       </div>
+      
 
       <div class="reset">  
         <button onclick="resetOrderList()">Reset</button>
@@ -111,6 +105,8 @@
   </div>
 
   <script src="script.js"></script>
+  
+
 
 
  
