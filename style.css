@@ -33,7 +33,7 @@ body{
  
  .Cabecalho{
  
-     font-size: 3.5rem;
+     font-size: 4rem;
      display: inline-flex;
      flex-direction: column;
      background-color:whitesmoke;
@@ -47,13 +47,11 @@ body{
   
    }
  
-h2{font-size: 2rem;}
-p{font-size: 2rem;}
- 
+
 
 
  .Corpo{
-     font-size: 3.5rem;
+     font-size: 4rem;
      color: #252A41;
      display: inline-flex;
      flex-direction: column;
@@ -105,7 +103,7 @@ p{font-size: 2rem;}
  .custom-file-input {
     /* Adjust width and height */
     width: 400px; /* Adjust width as needed */
-    height: 30px; /* Adjust height as needed */
+    height: 40px; /* Adjust height as needed */
     /* Add other styles as desired */
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -113,7 +111,7 @@ p{font-size: 2rem;}
     padding-top: 5px;
     /* Add more styling to suit your design */
     background-color: #D4B483;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
  margin-top: 10px;
   }
   
@@ -138,14 +136,8 @@ p{font-size: 2rem;}
      
  }
  
- .produtos{
- background-color:#052F5F;
- color: #D4B483;
- font-size: 3rem;
- border-radius: 10px;
- margin-top: 50px;
-     }
- 
+   
+
  .addprod button{
      background-color: #E4DFDA;
      font-size: 2.5rem;
@@ -187,3 +179,20 @@ p{font-size: 2rem;}
  .addprod button:active{
     background-color: #dad2cb;
  }
+
+
+.produtos{
+    background-color: #dad2cb;
+    border-radius: 10px;
+    font-size: 3rem;
+}
+#displayData{
+    font-size: 2rem;
+}
+.rodape{
+
+    
+    margin: 10px;
+    font-size: 1.5rem;
+ 
+}
