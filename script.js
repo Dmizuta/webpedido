@@ -1,6 +1,3 @@
-
-
-
 function addProduct() {
   const barcode = document.getElementById('barcodeInput');
   const qty = document.getElementById('qtyInput');
@@ -25,7 +22,7 @@ function addProduct() {
   } else {
     finalPrice = priceB;
   }
-
+  
   // Create a new product element
   const productDiv = document.createElement('div');
   productDiv.classList.add('product'); // Optional: Add a class for styling purposes
@@ -251,7 +248,7 @@ function displayData(foundItem) {
     }
     displayDiv.innerHTML = displayContent;
   } else {
-    displayDiv.innerHTML = '<p>Barcode not found.</p>';
+    displayDiv.innerHTML = '<p>Código não encontrado.</p>';
   }
 }
 
