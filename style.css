@@ -96,12 +96,7 @@ body{
  }
 
 
- #excelFileInput{
-    align-items: center;
-    text-align: center;
 
-
- }
 
  .custom-file-input {
     /* Adjust width and height */
@@ -113,6 +108,8 @@ body{
     padding: 5px;
     padding-top: 5px;
     /* Add more styling to suit your design */
+    background-color: #D4B483;
+ 
   }
   
 
