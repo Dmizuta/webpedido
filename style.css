@@ -14,12 +14,12 @@ body{
  }
  
  .input-field {
-    font-size: 2rem; /* Adjust the size as needed */
+    font-size: 3rem; /* Adjust the size as needed */
   }
  
  h1{
      color: #252A41;
-     font-size: 5rem;
+     font-size: 6rem;
    
     
    
@@ -28,12 +28,12 @@ body{
  .tudo{
      display: inline-flex;
      flex-direction: column;
-     width: 750px;
+     width: 900px;
  }
  
  .Cabecalho{
  
-     font-size: 3rem;
+     font-size: 3.5rem;
      display: inline-flex;
      flex-direction: column;
      background-color:whitesmoke;
@@ -53,12 +53,12 @@ body{
 
 
  .Corpo{
-     font-size: 3rem;
+     font-size: 3.5rem;
      color: #252A41;
      display: inline-flex;
      flex-direction: column;
      background-color: whitesmoke;
-     padding: 20px;
+     padding: 35px;
      border-radius: 10px;
  
  }
@@ -67,24 +67,28 @@ body{
  
  #sellerInput{
      background-color:#E4DFDA;
-     padding: 20px;
+     padding: 25px;
      border: 0;
+     margin: 20px;
      border-radius: 10px;
+
  }
     
  #dateInput{
      background-color: #E4DFDA;
      
-     padding: 20px;
+     padding: 25px;
      border: 0;
-     border-radius: 10px;    
+     border-radius: 10px;   
+     margin: 20px; 
  }
  #buyerInput{
      background-color: #E4DFDA;
      
-     padding: 20px;
+     padding: 25px;
      border: 0;
      border-radius: 10px;
+     margin: 20px;
     
  }
  
@@ -109,58 +113,63 @@ body{
     padding-top: 5px;
     /* Add more styling to suit your design */
     background-color: #D4B483;
- 
+    margin-bottom: 50px;
+ margin-top: 10px;
   }
   
 
 
  
  #barcodeInput{
-     padding: 20px;
+     padding: 25px;
      border: 0;
      background-color: #E4DFDA;
      border-radius: 10px;
+     margin: 20px;
       
  }
  
  #qtyInput{
-     padding: 20px;
+     padding: 25px;
      border: 0;
      background-color: #E4DFDA;
      border-radius: 10px;
+     margin: 20px;
      
  }
  
  .produtos{
  background-color:#052F5F;
  color: #DCCAAF;
- font-size: 2rem;
+ font-size: 3rem;
  border-radius: 10px;
+ margin-top: 50px;
      }
  
  .addprod button{
      background-color: #E4DFDA;
-     font-size: 2rem;
+     font-size: 2.5rem;
      margin: 20px;
-     width: 300px;
-     height: 150px;
+     width: 390px;
+     height: 190px;
      border-radius: 5px;
+     margin-top: 50px;
  }
  .download button{
       background-color: #E4DFDA;
-      font-size: 2rem;
+      font-size: 2.5rem;
      margin: 20px;
-     width: 300px;
-     height: 150px;
+     width: 390px;
+     height: 190px;
 
      border-radius: 5px;
  }
  .reset button{
       background-color: #E4DFDA;
-      font-size: 2rem;
+      font-size: 2.5rem;
      margin: 20px;
-     width: 300px;
-     height: 150px;
+     width: 390px;
+     height: 190px;
  
     
      
