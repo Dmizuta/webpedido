@@ -1,5 +1,11 @@
 
 
+let totalPrice = 0; // Initialize total price
+
+
+
+
+
 
 function addProduct() {
   const barcode = document.getElementById('barcodeInput');
@@ -26,6 +32,9 @@ function addProduct() {
     finalPrice = priceB;
   }
   
+  totalPrice += finalPrice * qtyValue;
+  document.getElementById('totalPriceDisplay').textContent = `Total Price: R$ ${totalPrice.toFixed(2)}`;
+
   // Create a new product element
   const productDiv = document.createElement('div');
   productDiv.classList.add('product'); // Optional: Add a class for styling purposes
@@ -68,6 +77,22 @@ document.getElementById('barcodeInput').addEventListener('keyup', function(event
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function exportToExcel() {
   const seller = document.getElementById('sellerInput').value;
   const date = document.getElementById('dateInput').value;
@@ -95,9 +120,28 @@ function exportToExcel() {
     ["Barcode", "Código", "Quantidade", "Descrição", "Preço"] // Include "Preço" as the header
   ];
   
-  products.forEach(product => {
-    dataArray.push([product.barcode, product.code, product.qty, product.description, product.price]);
-  });
+
+
+
+// Modify the line that formats and pushes the price into the dataArray
+products.forEach(product => {
+// Format the price without the currency symbol and with commas for decimals
+const formattedPrice = parseFloat(product.price.replace('R$ ', '')).toFixed(2);
+dataArray.push([product.barcode, product.code, product.qty, product.description, formattedPrice.replace('.', ',')]);});
+
+
+
+
+
+
+ // products.forEach(product => {
+ // dataArray.push([product.barcode, product.code, product.qty, product.description, product.price]);});
+
+
+
+
+
+
 
   const worksheet = XLSX.utils.aoa_to_sheet(dataArray);
   const workbook = XLSX.utils.book_new();
