@@ -28,7 +28,7 @@ body{
  .tudo{
      display: inline-flex;
      flex-direction: column;
-     width: 900px;
+     width: 1000px;
  }
  
  .Cabecalho{
