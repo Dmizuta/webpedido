@@ -18,10 +18,10 @@ body{
   }
  
  h1{
-     color: #776B5D;
+     color: #252A41;
      font-size: 5rem;
    
-     padding-top: 20px;
+    
    
  }
  
@@ -36,92 +36,148 @@ body{
      font-size: 3rem;
      display: inline-flex;
      flex-direction: column;
-     background-color:#EBE3D5;
-     color: #776B5D;
+     background-color:whitesmoke;
+     border: 5px;
+     color: #252A41;
+     border-radius: 10px;
     
      align-content: center;
      
      padding: 20px;
   
-    
    }
  
+
+
+ 
+
+
  .Corpo{
      font-size: 3rem;
-     color: #776B5D;
+     color: #252A41;
      display: inline-flex;
      flex-direction: column;
-     background-color: #EBE3D5;
+     background-color: whitesmoke;
      padding: 20px;
+     border-radius: 10px;
  
  }
  
  
  
  #sellerInput{
-     background-color:whitesmoke;
+     background-color:#E4DFDA;
      padding: 20px;
      border: 0;
+     border-radius: 10px;
  }
     
  #dateInput{
-     background-color: whitesmoke;
+     background-color: #E4DFDA;
      
      padding: 20px;
-     border: 0
+     border: 0;
+     border-radius: 10px;    
  }
  #buyerInput{
-     background-color: whitesmoke;
+     background-color: #E4DFDA;
      
      padding: 20px;
-     border: 0
+     border: 0;
+     border-radius: 10px;
+    
  }
  
  #Lista{
      background-color: #F3EEEA;
      
-    
-     color: black
+     border-radius: 10px;
+     color: black;
  }
+
+
+ #excelFileInput{
+    align-items: center;
+    text-align: center;
+
+
+ }
+
+ .custom-file-input {
+    /* Adjust width and height */
+    width: 400px; /* Adjust width as needed */
+    height: 30px; /* Adjust height as needed */
+    /* Add other styles as desired */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    padding-top: 5px;
+    /* Add more styling to suit your design */
+  }
+  
+
+
  
  #barcodeInput{
      padding: 20px;
-     border: 0
-  
+     border: 0;
+     background-color: #E4DFDA;
+     border-radius: 10px;
+      
  }
  
  #qtyInput{
      padding: 20px;
-     border: 0
+     border: 0;
+     background-color: #E4DFDA;
+     border-radius: 10px;
      
- 
  }
  
  .produtos{
- background-color:#776B5D;
- color: #F3EEEA;
+ background-color:#052F5F;
+ color: #DCCAAF;
  font-size: 2rem;
+ border-radius: 10px;
      }
  
  .addprod button{
-     background-color: #F3EEEA;
+     background-color: #E4DFDA;
      font-size: 2rem;
      margin: 20px;
      width: 300px;
      height: 150px;
+     border-radius: 5px;
  }
  .download button{
-      background-color: #F3EEEA;
+      background-color: #E4DFDA;
       font-size: 2rem;
      margin: 20px;
      width: 300px;
      height: 150px;
+
+     border-radius: 5px;
  }
  .reset button{
-      background-color: #F3EEEA;
+      background-color: #E4DFDA;
       font-size: 2rem;
      margin: 20px;
      width: 300px;
      height: 150px;
+ 
+    
      
+        border-radius: 5px;
+       
+
+ }
+
+ .reset button:active{
+    background-color: #dad2cb;
+ }
+ .download button:active{
+    background-color: #dad2cb;
+ }
+ .addprod button:active{
+    background-color: #dad2cb;
  }
