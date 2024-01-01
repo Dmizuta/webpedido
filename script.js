@@ -1,3 +1,6 @@
+
+
+
 function addProduct() {
   const barcode = document.getElementById('barcodeInput');
   const qty = document.getElementById('qtyInput');
