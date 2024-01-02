@@ -230,6 +230,7 @@ function resetOrderList() {
   document.getElementById('dateInput').value = '';
   document.getElementById('buyerInput').value = '';
   document.getElementById('productsList').innerHTML = '';
+  let totalPrice = 0; // Initialize total price
 }
 
 
