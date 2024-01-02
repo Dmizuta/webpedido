@@ -192,7 +192,12 @@ function resetOrderList() {
   document.getElementById('dateInput').value = '';
   document.getElementById('buyerInput').value = '';
   document.getElementById('productsList').innerHTML = '';
-  totalPrice = 0; // Initialize total price
+
+  // Reset the totalPrice variable to zero
+  totalPrice = 0;
+
+  // Update the display to show the totalPrice as zero
+  document.getElementById('totalPriceDisplay').textContent = `Total Price: R$ 0.00`;
 }
 
 
