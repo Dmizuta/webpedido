@@ -161,48 +161,6 @@ dataArray.push([product.barcode, product.code, product.qty, product.description,
 
 
 
-function downloadOrderList() {
-  const seller = document.getElementById('sellerInput').value;
-  const date = document.getElementById('dateInput').value;
-  const buyer = document.getElementById('buyerInput').value;
-
-  const productsListContent = document.getElementById('productsList').textContent;
-
-  const fileName = prompt("Enter file name", "PEDIDO") || "order_list";
-
-  let fileContent = `Vendedor: ${seller}\nData: ${date}\nComprador: ${buyer}\n\nProdutos:\n${productsListContent}`;
-
-  const blob = new Blob([fileContent], { type: 'text/plain' });
-  const a = document.createElement('a');
-  const url = window.URL.createObjectURL(blob);
-  a.href = url;
-  a.download = `${fileName}.txt`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -225,12 +183,16 @@ function uploadExcelFile() {
   }
 }
 
+
+
+
+
 function resetOrderList() {
   document.getElementById('sellerInput').value = '';
   document.getElementById('dateInput').value = '';
   document.getElementById('buyerInput').value = '';
   document.getElementById('productsList').innerHTML = '';
-  let totalPrice = 0; // Initialize total price
+  totalPrice = 0; // Initialize total price
 }
 
 
