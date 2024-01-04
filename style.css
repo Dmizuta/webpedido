@@ -20,7 +20,7 @@ body{
  h1{
      color: #252A41;
      font-size: 6rem;
-   
+   padding-bottom: 60px;
     
    
  }
@@ -47,7 +47,6 @@ body{
   
    }
  
-
 
 
  .Corpo{
@@ -193,6 +192,6 @@ body{
 
     
     margin: 10px;
-    font-size: 1.8rem;
- 
+    font-size: 1.7rem;
+ padding-bottom: 10px;
 }
