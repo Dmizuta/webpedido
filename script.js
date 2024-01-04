@@ -33,7 +33,7 @@ function addProduct() {
   }
   
   totalPrice += finalPrice * qtyValue;
-  document.getElementById('totalPriceDisplay').textContent = `Total Price: R$ ${totalPrice.toFixed(2)}`;
+  document.getElementById('totalPriceDisplay').textContent = `Valor Total: R$ ${totalPrice.toFixed(2)}`;
 
   // Create a new product element
   const productDiv = document.createElement('div');
