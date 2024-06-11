@@ -197,7 +197,7 @@ function resetOrderList() {
   totalPrice = 0;
 
   // Update the display to show the totalPrice as zero
-  document.getElementById('totalPriceDisplay').textContent = `Preço Total: R$ 0.00`;
+  document.getElementById('totalPriceDisplay').textContent = `Total: R$ 0.00`;
 }
 
 
