@@ -138,7 +138,7 @@ body{
    
 
  .addprod button{
-     background-color: #bdb8b4;
+     background-color: #e4dfdae1;
      font-size: 2.5rem;
      margin: 20px;
      width: 390px;
@@ -147,7 +147,7 @@ body{
      margin-top: 50px;
  }
  .download button{
-      background-color: #bdb8b4;
+      background-color: #e4dfdae1;
       font-size: 2.5rem;
      margin: 20px;
      width: 390px;
@@ -156,7 +156,7 @@ body{
      border-radius: 5px;
  }
  .reset button{
-      background-color: #bdb8b4;
+      background-color: #e4dfdae1;
       font-size: 2.5rem;
      margin: 20px;
      width: 390px;
@@ -170,18 +170,18 @@ body{
  }
 
  .reset button:active{
-    background-color: #8d8a88;
+    background-color: #e4dfdab7;
  }
  .download button:active{
-    background-color: #8d8a88;
+    background-color: #e4dfdab7;
  }
  .addprod button:active{
-    background-color: #8d8a88;
+    background-color: #e4dfdab7;
  }
 
 
 .produtos{
-    background-color: #bdb8b4;
+    background-color: #e4dfdab7;
     border-radius: 10px;
     font-size: 2.5rem;
 }
